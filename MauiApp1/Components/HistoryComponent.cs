@@ -8,10 +8,12 @@ using MauiApp1.Models;
 
 namespace MauiApp1.Components
 {
+    //Komponent, který generuje Frame na Historii budíků
     public class HistoryComponent
     {
         private readonly HttpClient httpClient = new HttpClient();
         
+        //testovací data
         public Root GetTestData()
         {
             return new Root
@@ -25,7 +27,8 @@ namespace MauiApp1.Components
                 }
             };
         }
-        
+        //Generuje UI a zároveň získává a binduje data ze serveru
+        //Bohužel je to spojené v jedné metodě (ano vim není to hezké), protože byl problém to volat samostatně a vracet pouze ty data
          public async Task GetDataServer(StackLayout stackLayout)
         {
             try
@@ -58,7 +61,9 @@ namespace MauiApp1.Components
                 using JsonDocument doc = JsonDocument.Parse(responseContent);
                 JsonElement root = doc.RootElement;
                 JsonElement dataArray = root.GetProperty("data");
-                string result = "";
+                //string result = "";
+                
+                //pro každou dvojici (date a čas) se vygeneruje FlexLayout do kterého se přidají hodnoty
                 foreach (JsonElement item in dataArray.EnumerateArray())
                 {
                     string date = item.GetProperty("date").GetString();

@@ -8,14 +8,14 @@ using MauiApp1.Config;
 using MauiApp1.ConstantsM;
 
 namespace MauiApp1.Components;
-
+//Komponent, který generuje Frame na vypnutí nebo zapnutí budíku
 public class SwitchComponent
 {
     public Switch ToggleSwitch { get; private set; }
     private readonly HttpClient httpClient = new HttpClient();
     
 
-
+    //generuje Frame
     public Frame CreateSwitchFrame()
     {
         
@@ -49,6 +49,7 @@ public class SwitchComponent
         };
         flexLayout.Children.Add(switchLabel);
         flexLayout.Children.Add(ToggleSwitch);
+        //pokud se změní Switch -> pošle se na server True/False
         ToggleSwitch.Toggled += async (sender, e) =>
         {
             Console.WriteLine("zapnuto/vypnuto");
@@ -60,6 +61,7 @@ public class SwitchComponent
         };
         return frame;
     }
+    //Jednoduchá metoda na odesílání
     public async Task SendDataToServer (object data, string path)
     {
         try

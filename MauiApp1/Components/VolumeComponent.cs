@@ -2,7 +2,7 @@ using System.Net.Http.Json;
 using Microsoft.Maui.Layouts;
 
 namespace MauiApp1.Components;
-
+//Komponent, který generuje Frame na změnu hlasitosti budíku
 public class VolumeComponent
 {
     public Slider PercentSlider { get; private set; }
@@ -17,7 +17,7 @@ public class VolumeComponent
         
     
 
-    
+    //generuje Frame
     public Frame CreateVolumeFrame()
     {
         
@@ -57,9 +57,10 @@ public class VolumeComponent
         
         flexLayout.Children.Add(percentLabel);
         flexLayout.Children.Add(PercentSlider);
+        //pokud se změní Hodnota hlasitosti (slideru) -> pošle se na server hlasitost
         PercentSlider.ValueChanged += async (sender, e) =>
         {
-            int percent = ((int)Math.Round(e.NewValue))*10;
+            int percent = ((int)Math.Round(e.NewValue))*10; // * 10 protože ESP dělá tone od 0 - 1024 (zaokrouhlil jsem na 1000) (ano mohl jsem i změnit hodnotu na Slideru min - 0 max - 1024)
             var alarm_volume = new { volume = percent };
             await SendDataToServer(alarm_volume, ConstantsM.ConstantsM.ApiEndPointVolume);
 
@@ -67,13 +68,13 @@ public class VolumeComponent
         return frame;
         
     }
-
+    //Nepoužívám
     public void UpdateProgress(double percent)
     {
         PercentSlider.Value = percent;
     }
     
-    
+    //Odesílání na server
     public async Task SendDataToServer(object data, string path)
     {
         try

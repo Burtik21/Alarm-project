@@ -2,10 +2,18 @@
 
 using System.Text.Json;
 using MauiApp1.Components;
-using MauiApp1.Models;
+
 using Microsoft.Maui.Layouts;
 
 namespace MauiApp1;
+
+/* Bohužel zde vytvářím celou komponentu Historie, důvod -> Maui dělalo velké problémy to mít v samostatné třídě, nevím proč
+ * To stejné i s ApiHandlerem -> musel jsem vytvářet ty metody přímo ve třídách, protože se Maui nelíbilo mít na to samostatnou třídu, to stejné i s FrameGeneratorem
+ * 
+
+ */
+
+
 
 public partial class MainPage : ContentPage
 {
@@ -19,8 +27,6 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
         CreateUI();
-        
-        
     }
 
     private void CreateUI()
@@ -32,6 +38,8 @@ public partial class MainPage : ContentPage
             Padding = 20,
             Spacing = 20
         };
+        
+        //vytvarim componenty(framy) a následně vkládám do Stack Layoutu
         timePickerComponent = new TimePickerComponent();
         var timePickerFrame = timePickerComponent.CreateTimePickerFrame();
 
@@ -50,7 +58,7 @@ public partial class MainPage : ContentPage
         Content = stackLayout;
         Console.WriteLine("vytvoreno UI");
     }
-    
+    //Celá třída HistoryComponent
     private async Task GetDataServer(StackLayout stackLayout)
         {
             try

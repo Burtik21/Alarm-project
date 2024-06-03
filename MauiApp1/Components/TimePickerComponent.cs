@@ -7,13 +7,13 @@ using Microsoft.Maui.Layouts;
 
 
 namespace MauiApp1.Components;
-
+//Komponent, který generuje Frame na změnu času budíku
 public class TimePickerComponent
 {
     public TimePicker TimePicker { get; private set; }
     private readonly HttpClient httpClient = new HttpClient();
 
-
+    //generuje Frame
     public Frame CreateTimePickerFrame()
     {
         var flexLayout = new FlexLayout
@@ -41,7 +41,7 @@ public class TimePickerComponent
         };
         flexLayout.Children.Add(timePickerLabel);
         flexLayout.Children.Add(TimePicker);
-        
+        //Když se změní hodnota času -> pošle se na server  2 hodnoty. Hodina a minuta
         TimePicker.PropertyChanged += async (sender, e) =>
         {
             if (e.PropertyName == TimePicker.TimeProperty.PropertyName)
@@ -59,6 +59,7 @@ public class TimePickerComponent
         return frame;
         
     }
+    //Odesílání na server
     public async Task SendDataToServer (object data, string path)
     {
         try
