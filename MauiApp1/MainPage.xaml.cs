@@ -50,21 +50,6 @@ public partial class MainPage : ContentPage
         Content = stackLayout;
         Console.WriteLine("vytvoreno UI");
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     private async Task GetDataServer(StackLayout stackLayout)
         {
