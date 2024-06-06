@@ -1,5 +1,5 @@
 # Alarm project
-V https://github.com/Burtik21/Alarm-project/releases/tag/v1.0 je ke stáhnutí .apk soubor -> jestli nebude fungovat, lze vyzkoušet i .exe soubor na windows.
+V https://github.com/Burtik21/Alarm-project/releases/tag/v1.0 je ke stáhnutí .apk soubor -> jestli nebude fungovat, lze vyzkoušet i .exe soubor na windows (win-x64.zip).
 
 Funkčnost aplikace se dá ověřit na endpointech (změna v jsonu):
  - Po zadání času lze vidět změnu na: http://141.147.16.43/api/cas/
